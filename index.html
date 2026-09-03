@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+
+  <meta
+    name="theme-color"
+    content="#050505"
+  />
+
+  <meta
+    name="description"
+    content="D.A.B.S.y - a digital AI creature living in your phone."
+  />
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+
+  <title>D.A.B.S.y</title>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <main id="app">
+
+    <!-- CAMERA LAYER
+         The video is intentionally hidden visually.
+         D.A.B.S.y uses it as its eyes when Vision Mode is enabled. -->
+    <video
+      id="camera"
+      autoplay
+      playsinline
+      muted
+      aria-hidden="true"
+    ></video>
+
+    <!-- D.A.B.S.y WORLD -->
+    <section id="creatureWorld" class="creature-world">
+
+      <div id="statusPill" class="status-pill">
+        <span id="statusDot"></span>
+        <span id="statusText">D.A.B.S.y is awake</span>
+      </div>
+
+      <div
+        id="creature"
+        class="creature"
+        aria-label="D.A.B.S.y"
+      >
+
+        <div id="eyeLeft" class="eye">
+          <div class="pupil"></div>
+        </div>
+
+        <div id="eyeRight" class="eye">
+          <div class="pupil"></div>
+        </div>
+
+        <div id="hands" class="hands" aria-hidden="true">
+          <div class="hand hand-left">⌒</div>
+          <div class="hand hand-right">⌒</div>
+        </div>
+
+      </div>
+
+      <!-- Speech/subtitle area -->
+      <div id="speechArea" class="speech-area">
+        <div id="subtitle" class="subtitle"></div>
+      </div>
+
+      <!-- Study workspace -->
+      <section id="studyPanel" class="study-panel hidden">
+
+        <div class="study-header">
+          <div>
+            <span class="eyebrow">D.A.B.S.y</span>
+            <h1>Study Mode</h1>
+          </div>
+
+          <button
+            id="closeStudyButton"
+            class="icon-button"
+            type="button"
+            aria-label="Close Study Mode"
+          >
+            ×
+          </button>
+        </div>
+
+        <div id="studyOutput" class="study-output">
+          <p class="empty-study">
+            Give me a question. I'll help you work through it.
+          </p>
+        </div>
+
+        <div class="study-input-row">
+
+          <textarea
+            id="studyInput"
+            placeholder="Ask D.A.B.S.y something..."
+            rows="2"
+            spellcheck="true"
+          ></textarea>
+
+          <button
+            id="studySendButton"
+            class="send-button"
+            type="button"
+            aria-label="Send question"
+          >
+            ↑
+          </button>
+
+        </div>
+
+      </section>
+
+      <!-- CAMERA INDICATOR -->
+      <div id="visionIndicator" class="vision-indicator hidden">
+        <span class="vision-eye">◉</span>
+        <span>VISION ON</span>
+      </div>
+
+      <!-- MAIN CONTROLS -->
+      <nav class="control-dock">
+
+        <button
+          id="visionButton"
+          class="control-button"
+          type="button"
+        >
+          <span class="control-icon">◉</span>
+          <span>Vision</span>
+        </button>
+
+        <button
+          id="voiceButton"
+          class="control-button"
+          type="button"
+        >
+          <span class="control-icon">⌁</span>
+          <span>Talk</span>
+        </button>
+
+        <button
+          id="studyButton"
+          class="control-button primary"
+          type="button"
+        >
+          <span class="control-icon">✦</span>
+          <span>Study</span>
+        </button>
+
+        <button
+          id="sleepButton"
+          class="control-button"
+          type="button"
+        >
+          <span class="control-icon">☾</span>
+          <span>Rest</span>
+        </button>
+
+      </nav>
+
+      <!-- Hidden camera permission helper -->
+      <div id="permissionMessage" class="permission-message hidden">
+        <div class="permission-card">
+          <h2>Let me see 👁️</h2>
+          <p>
+            Vision Mode needs access to your camera.
+            Nothing is sent to an AI service unless D.A.B.S.y
+            explicitly performs a vision request.
+          </p>
+
+          <button
+            id="retryCameraButton"
+            class="wide-button"
+            type="button"
+          >
+            Enable Camera
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="vision.js"></script>
+  <script src="ai.js"></script>
+  <script src="voice.js"></script>
+  <script src="app.js"></script>
+
+</body>
+        </html>
